@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <canvas id="canvas" width="700" height="500"></canvas>
+</head>
+<body>
+    <script>
+        let canvas = document.querySelector('#canvas');
+        let ctx = canvas.getContext('2d');
+        
+        // Left side diagonal
+        ctx.fillStyle = 'red';
+        ctx.fillRect(0, 0, 50, 50); 
+        ctx.fillStyle = 'blue';
+        ctx.fillRect(100, 100, 50, 50);
+        ctx.fillStyle = 'green';
+        ctx.fillRect(200, 200, 50, 50);
+        ctx.fillStyle = 'yellow';
+        ctx.fillRect(300, 300, 50, 50);
+      
+        // Right side diagonal (adjusted for triangle)
+        ctx.fillStyle = 'red';
+        ctx.fillRect(600, 0, 50, 50); 
+        ctx.fillStyle = 'blue';
+        ctx.fillRect(500, 100, 50, 50);
+        ctx.fillStyle = 'green';
+        ctx.fillRect(400, 200, 50, 50);
+
+        // Line from top red to top red (horizontal line)
+        ctx.beginPath();
+        ctx.moveTo(25, 25); // Center of left red square
+        ctx.lineTo(625, 25); // Center of right red square
+        ctx.strokeStyle = "rgba(255, 0, 0, 0.5)";
+        ctx.lineWidth = 2;
+        ctx.stroke();
+        
+        // Line from top-left red to bottom-right yellow
+        ctx.beginPath();
+        ctx.moveTo(25, 25); // Center of red square
+        ctx.lineTo(325, 325); // Center of yellow square
+        ctx.strokeStyle = "rgba(255, 128, 0, 0.7)"; // Orange-ish color
+        ctx.lineWidth = 3;
+        ctx.setLineDash([5, 3]); // Dashed line
+        ctx.stroke();
+        
+        // Line from top-right red to bottom-left yellow
+        ctx.beginPath();
+        ctx.moveTo(625, 25); // Center of right red square (600 + 50/2, 0 + 50/2)
+        ctx.lineTo(325, 325); // Center of yellow square (300 + 50/2, 300 + 50/2)
+        ctx.strokeStyle = "rgba(255, 100, 0, 0.7)"; // Reddish-orange color
+        ctx.lineWidth = 3;
+        ctx.setLineDash([8, 4]); // Different dashed pattern
+        ctx.stroke();
+        ctx.setLineDash([]); // Reset to solid line
+
+    </script>
+</body>
+</html>
